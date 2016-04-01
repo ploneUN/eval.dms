@@ -13,6 +13,7 @@
   <property name="filter_content_types">True</property>  
   <property name="allowed_content_types" purge="False">
     <element value="eval.dms.workspace" />
+    <element value="eval.dms.config" />
   </property>
   <property name="allow_discussion">False</property>
 
