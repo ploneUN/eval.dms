@@ -8,6 +8,7 @@
   -->
 <object name="portal_types" meta_type="Plone Types Tool">
   <!-- -*- extra stuff goes here -*- -->
+  <object name="eval.dms.config" meta_type="Dexterity FTI" />
   <object name="eval.dms.document" meta_type="Dexterity FTI" />
   <object name="eval.dms.workspace" meta_type="Dexterity FTI" />
   <object name="eval.dms.evaldmsapp" meta_type="Dexterity FTI" />
