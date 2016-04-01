@@ -34,6 +34,7 @@ setup(name='eval.dms',
           'plone.app.multilingual',
           'plone.multilingualbehavior',
           'plone.app.versioningbehavior',
+          'plone.formwidget.multifile',
           # -*- Extra requirements: -*-
       ],
       extras_require={
