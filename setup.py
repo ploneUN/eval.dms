@@ -34,6 +34,7 @@ setup(name='eval.dms',
           'plone.app.multilingual',
           'plone.multilingualbehavior',
           'plone.app.versioningbehavior',
+          'eea.facetednavigation',
           # -*- Extra requirements: -*-
       ],
       extras_require={

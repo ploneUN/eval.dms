@@ -26,7 +26,8 @@ from eval.dms import MessageFactory as _
 
 from plone.dexterity.utils import createContentInContainer, createContent
 from zope.app.container.interfaces import IObjectAddedEvent
-
+from zope.component import getMultiAdapter
+from eval.dms.loadxmlfile import loadxmlfile
 # Interface class; used to define content-type schema.
 
 class IEVALDMSApp(form.Schema, IImageScaleTraversable):
@@ -43,6 +44,16 @@ def _createObject(context, event):
     createContentInContainer(context, 'eval.dms.config', checkConstraints=False, title='Config')
     createContentInContainer(context, 'eval.dms.workspace', checkConstraints=False, title='Workspace')
     
+    #auto enable faceted navigation
+    faceted = getMultiAdapter((context, context.REQUEST), name=u'faceted_subtyper')
+    faceted.enable()
+
+    #auto import dms-app.xml config
+    query = {'import_button': 'Import',
+            'import_file': loadxmlfile('/profiles/default/eval_dms.xml'),
+            'redirect': ''}
+    view = context.unrestrictedTraverse('@@faceted_exportimport')
+    view(**query)
     context.reindexObject()
 
 
