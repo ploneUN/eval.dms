@@ -1,24 +1,21 @@
 <?xml version="1.0"?>
-<object name="eval.dms.evaldmsapp"
+<object name="eval.dms.config"
    meta_type="Dexterity FTI"
    i18n:domain="eval.dms" xmlns:i18n="http://xml.zope.org/namespaces/i18n">
 
   <!-- Basic metadata -->
-  <property name="title" i18n:translate="">EVAL DMS App</property>
+  <property name="title" i18n:translate="">Config</property>
   <property name="description"
-    i18n:translate="">Regional and EVAL HQ Repository</property>
+    i18n:translate="">Config</property>
   <property name="icon_expr">string:${portal_url}/folder_icon.png</property>
-  <property name="factory">eval.dms.evaldmsapp</property>
-  <property name="global_allow">True</property>
+  <property name="factory">eval.dms.config</property>
+  <property name="global_allow">False</property>
   <property name="filter_content_types">True</property>  
-  <property name="allowed_content_types" purge="False">
-    <element value="eval.dms.workspace" />
-    <element value="eval.dms.config" />
-  </property>
+  <property name="allowed_content_types" />
   <property name="allow_discussion">False</property>
 
   <!-- schema and class used for content items -->
-  <property name="schema">eval.dms.content.eval_dms_app.IEVALDMSApp</property> 
+  <property name="schema">eval.dms.content.config.IConfig</property> 
   <property name="klass">plone.dexterity.content.Container</property>
   <property name="behaviors">
      <element value="plone.app.content.interfaces.INameFromTitle" />
