@@ -23,9 +23,11 @@ from plone.multilingualbehavior.directives import languageindependent
 from plone.autoform.directives import write_permission, read_permission
 from plone.formwidget.multifile import MultiFileFieldWidget
 from collective import dexteritytextindexer
+from Products.CMFCore.utils import getToolByName
 
 from eval.dms import MessageFactory as _
-
+from zope.app.container.interfaces import IObjectAddedEvent
+from plone.autoform.directives import write_permission, read_permission
 
 # Interface class; used to define content-type schema.
 
@@ -43,12 +45,29 @@ class IDocument(form.Schema, IImageScaleTraversable):
     dexteritytextindexer.searchable('multifile')
     write_permission(multifile='cmf.ReviewPortalContent')
     read_permission(multifile='cmf.ReviewPortalContent')
-    form.widget(multifile=MultiFileFieldWidget)
-    multifile = schema.List(
-            title=_(u"Document"),
-            required=False,
-            value_type=NamedBlobFile(),
+    multifile = NamedBlobFile(
+        title=_(u"Document"),
+        description=_(u"Please attach a file"),
+        required=False,
         )
     pass
 
 alsoProvides(IDocument, IFormFieldProvider)
+
+@grok.subscribe(IDocument, IObjectAddedEvent)
+def _createObject(context, event):
+    #id generation (Format: DOCUMENT-X)
+    parent = context.aq_parent
+    id = context.getId()
+    catalog = getToolByName(context, 'portal_catalog')
+    path = '/'.join(parent.getPhysicalPath())
+    brains = catalog.unrestrictedSearchResults(path={'query': path, 'depth' : 1}, portal_type='ppp.dms.document')
+    if len(brains) > 1:
+        brains = [int(brain.getId.split('-')[1]) for brain in brains if 'DOCUMENT' in  brain.getId]
+        context_id = int(max(brains))+1
+    else:
+        context_id = 1
+    context_id = 'DOCUMENT-' + str(context_id)
+    parent.manage_renameObject(id, context_id) 
+    context.reindexObject()
+    return
