@@ -34,11 +34,8 @@ setup(name='eval.dms',
           'plone.app.multilingual',
           'plone.multilingualbehavior',
           'plone.app.versioningbehavior',
-<<<<<<< HEAD
           'eea.facetednavigation',
-=======
           'plone.formwidget.multifile',
->>>>>>> origin/master
           # -*- Extra requirements: -*-
       ],
       extras_require={
