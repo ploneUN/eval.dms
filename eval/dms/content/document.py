@@ -20,6 +20,8 @@ from plone.app.textfield import RichText
 from z3c.relationfield.schema import RelationList, RelationChoice
 from plone.formwidget.contenttree import ObjPathSourceBinder
 from plone.multilingualbehavior.directives import languageindependent
+from plone.autoform.directives import write_permission, read_permission
+from plone.formwidget.multifile import MultiFileFieldWidget
 from collective import dexteritytextindexer
 from Products.CMFCore.utils import getToolByName
 
@@ -43,12 +45,21 @@ class IDocument(form.Schema, IImageScaleTraversable):
     dexteritytextindexer.searchable('multifile')
     write_permission(multifile='cmf.ReviewPortalContent')
     read_permission(multifile='cmf.ReviewPortalContent')
+<<<<<<< HEAD
     multifile = NamedBlobFile(
         title=_(u"Document"),
         description=_(u"Please attach a file"),
         required=False,
         )
 
+=======
+    form.widget(multifile=MultiFileFieldWidget)
+    multifile = schema.List(
+            title=_(u"Document"),
+            required=False,
+            value_type=NamedBlobFile(),
+        )
+>>>>>>> origin/master
     pass
 
 alsoProvides(IDocument, IFormFieldProvider)
