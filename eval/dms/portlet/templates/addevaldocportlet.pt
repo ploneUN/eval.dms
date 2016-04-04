@@ -1,0 +1,7 @@
+<div class="side_viewlet state-sign">
+    <p style="margin-bottom: 10px">
+	<a class="button add-btn alignL-btn" tal:attributes="href python: context.absolute_url()+'/++add++eval.dms.document'">
+	    <span>Add A Document</span>
+	</a>
+    </p>    
+</div>

@@ -2,5 +2,11 @@
 <portlets>
 
     <!-- -*- extra stuff goes here -*- -->
+ <assignment name="addevaldocportlet" category="content_type"
+        key="eval.dms.workspace" manager="plone.leftcolumn"
+        type="addevaldocportlet.portlet" visible="True">
+    	<property name="portlet_title">Add Document Portlet</property>
+</assignment>
+
 
 </portlets>
