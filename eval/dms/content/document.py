@@ -61,7 +61,7 @@ def _createObject(context, event):
     id = context.getId()
     catalog = getToolByName(context, 'portal_catalog')
     path = '/'.join(parent.getPhysicalPath())
-    brains = catalog.unrestrictedSearchResults(path={'query': path, 'depth' : 1}, portal_type='ppp.dms.document')
+    brains = catalog.unrestrictedSearchResults(path={'query': path, 'depth' : 1}, portal_type='eval.dms.document')
     if len(brains) > 1:
         brains = [int(brain.getId.split('-')[1]) for brain in brains if 'DOCUMENT' in  brain.getId]
         context_id = int(max(brains))+1

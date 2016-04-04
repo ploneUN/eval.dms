@@ -15,4 +15,13 @@
         editview=".addevaldocportlet.EditForm"
         />
 
+     <plone:portlet
+        name="searchevaldmsportlet.portlet"
+        interface=".searchevaldmsportlet.IContentNavigation"
+        assignment=".searchevaldmsportlet.Assignment"
+        renderer=".searchevaldmsportlet.Renderer"
+        addview=".searchevaldmsportlet.AddForm"
+        editview=".searchevaldmsportlet.EditForm"
+        />
+
 </configure>
