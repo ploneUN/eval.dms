@@ -36,6 +36,7 @@ setup(name='eval.dms',
           'plone.app.versioningbehavior',
           'eea.facetednavigation',
           'plone.formwidget.multifile',
+          'redomino.tokenrole',
           # -*- Extra requirements: -*-
       ],
       extras_require={
