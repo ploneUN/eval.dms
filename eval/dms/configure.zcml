@@ -28,7 +28,7 @@
     <!-- -*- extra stuff goes here -*- -->
 
     <class class="eval.dms.content.document.IDocument">
-      <implements interface="redomino.tokenrole.interfaces.ITokenRolesProviding" /> 
+        <require permission="cmf.ReviewPortalContent" interface="redomino.tokenrole.interfaces.ITokenRolesProviding"/>
     </class> 
 
     <!-- -*- extra stuff goes here -*- -->
