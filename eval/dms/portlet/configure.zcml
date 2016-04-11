@@ -16,6 +16,15 @@
         />
 
      <plone:portlet
+        name="requesttoviewportlet.portlet"
+        interface=".requesttoviewportlet.IContentNavigation"
+        assignment=".requesttoviewportlet.Assignment"
+        renderer=".requesttoviewportlet.Renderer"
+        addview=".requesttoviewportlet.AddForm"
+        editview=".requesttoviewportlet.EditForm"
+        />
+
+     <plone:portlet
         name="searchevaldmsportlet.portlet"
         interface=".searchevaldmsportlet.IContentNavigation"
         assignment=".searchevaldmsportlet.Assignment"
@@ -23,5 +32,7 @@
         addview=".searchevaldmsportlet.AddForm"
         editview=".searchevaldmsportlet.EditForm"
         />
+
+
 
 </configure>
