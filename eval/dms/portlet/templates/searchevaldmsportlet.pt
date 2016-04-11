@@ -7,24 +7,28 @@
                       tal:define="status view/status;
                                   title python: view.searched_value('title');
                                   status_search python: view.searched_value('status');">
-    <div class="field">
-      <label>Title
-        <input name='title' id='title' tal:attributes="value title"/>
-      </label>
-    </div>
-
-    <div class="field">
-      <label tal:condition="status">Status
-          <select name='status' id='status'>
-        <tal:entry tal:repeat="option status" tal:define='val status_search'>
-           <option tal:attributes="selected python: (val == str(option['status']).title())" tal:content="python: option['status'].title()"></option>
-        </tal:entry>
-      </select>
-      </label>
-    </div>
-    <input id="pagination" name="pagination" value="0" type="hidden">
-    <input type="submit" value="Submit">
-
+        <div class="field">
+          <label>Title</label>
+          <span class="formHelp"></span>
+          <div class="fieldErrorBox"></div>
+          <input type="text" name='title' id='title' tal:attributes="value title"/>
+        </div>
+    
+        <div class="field">
+          <label tal:condition="status">Status</label>
+          <span class="formHelp"></span>
+          <div class="fieldErrorBox"></div>
+            <select name='status' id='status'>
+            <tal:entry tal:repeat="option status" tal:define='val status_search'>
+               <option tal:attributes="selected python: (val == str(option['status']).title())" tal:content="python: option['status'].title()"></option>
+            </tal:entry>
+          </select>
+        </div>
+        <input id="pagination" name="pagination" value="0" type="hidden">
+        
+        <div>
+            <input type="submit" value="Submit">
+        </div>
     </form>
   <span  style="display: none" id="current" tal:content="context/absolute_url"></span>
   
