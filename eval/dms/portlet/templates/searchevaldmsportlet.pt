@@ -1,37 +1,91 @@
-<dl class="portlet searchrequestportlet" tal:condition="python: view.roles()">
-<dt class="portletHeader" tal:content="python:  view.contents().portlet_title"></dt>
+<style type="text/css">
+    .searchrequestportlet input[type="text"]{
+        -moz-box-shadow: inset 0px 0px 0px 0px #ffffff;
+        -webkit-box-shadow: inset 0px 0px 0px 0px #ffffff;
+        box-shadow: inset 0px 0px 0px 0px #ffffff;
+        -moz-border-radius: 6px;
+        -webkit-border-radius: 6px;
+        border-radius: 5px;
+        border: 1px solid #dcdcdc;
+        color: #777777;
+        padding: 6px 0;
+    }
+    .searchrequestportlet select{
+        border-radius: 5px;
+        border: 1px solid #dcdcdc;
+        background: none #fff;
+        padding: 6px 0;
+        color: #777777;
+    }
+    .searchrequestportlet input[type="submit"]{
+        -moz-box-shadow: inset 0px 0px 0px 0px #ffffff;
+        -webkit-box-shadow: inset 0px 0px 0px 0px #ffffff;
+        box-shadow: inset 0px 0px 0px 0px #ffffff;
+        background: -webkit-gradient(linear, left top, left bottom, color-stop(0.05, #ededed), color-stop(1, #dfdfdf));
+        background: -moz-linear-gradient(top, #ededed 5%, #dfdfdf 100%);
+        background: -webkit-linear-gradient(top, #ededed 5%, #dfdfdf 100%);
+        background: -o-linear-gradient(top, #ededed 5%, #dfdfdf 100%);
+        background: -ms-linear-gradient(top, #ededed 5%, #dfdfdf 100%);
+        background: linear-gradient(to bottom, #ededed 5%, #dfdfdf 100%);
+        filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ededed', endColorstr='#dfdfdf',GradientType=0);
+        background-color: #ededed;
+        -moz-border-radius: 6px;
+        -webkit-border-radius: 6px;
+        border-radius: 6px;
+        border: 1px solid #dcdcdc;
+        display: inline-block;
+        cursor: pointer;
+        color: #777777;
+        font-size: 15px;
+        font-weight: bold;
+        padding: 6px 24px;
+        text-decoration: none;
+        text-align: center;
+        text-shadow: 0px 1px 0px #ffffff;
+    }
+    .searchrequestportlet input[type="submit"]:hover{
+        background: -webkit-gradient(linear, left top, left bottom, color-stop(0.05, #dfdfdf), color-stop(1, #ededed));
+        background: -moz-linear-gradient(top, #dfdfdf 5%, #ededed 100%);
+        background: -webkit-linear-gradient(top, #dfdfdf 5%, #ededed 100%);
+        background: -o-linear-gradient(top, #dfdfdf 5%, #ededed 100%);
+        background: -ms-linear-gradient(top, #dfdfdf 5%, #ededed 100%);
+        background: linear-gradient(to bottom, #dfdfdf 5%, #ededed 100%);
+        filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#dfdfdf', endColorstr='#ededed',GradientType=0);
+        background-color: #dfdfdf;
+    }
+</style>
 
-
-<dd class="portletItem">
+<div class="portlet searchrequestportlet" tal:condition="python: view.roles()">
     <form id="portlet" tal:attributes= "action string:${context/absolute_url}/mydocs_view" method='post' 
                       tal:define="status view/status;
                                   title python: view.searched_value('title');
                                   status_search python: view.searched_value('status');">
-        <div class="field">
-          <label>Title</label>
-          <span class="formHelp"></span>
-          <div class="fieldErrorBox"></div>
-          <input type="text" name='title' id='title' tal:attributes="value title"/>
-        </div>
-    
-        <div class="field">
-          <label tal:condition="status">Status</label>
-          <span class="formHelp"></span>
-          <div class="fieldErrorBox"></div>
-            <select name='status' id='status'>
-            <tal:entry tal:repeat="option status" tal:define='val status_search'>
-               <option tal:attributes="selected python: (val == str(option['status']).title())" tal:content="python: option['status'].title()"></option>
-            </tal:entry>
-          </select>
-        </div>
-        <input id="pagination" name="pagination" value="0" type="hidden">
+        <fieldset style="border:1px solid #dcdcdc;font-size:80%;border-radius:5px">
+            <legend style="color:#205c90;font-weight:bold;font-size:15px" tal:content="python:  view.contents().portlet_title" />
+            <br />
+            <div class="field">
+              <label>Title</label>
+              <span class="formHelp"></span>
+              <div class="fieldErrorBox"></div>
+              <input type="text" name='title' id='title' tal:attributes="value title" placeholder="Enter Title"/>
+            </div>
         
-        <div>
-            <input type="submit" value="Submit">
-        </div>
+            <div class="field">
+              <label tal:condition="status">Status</label>
+              <span class="formHelp"></span>
+              <div class="fieldErrorBox"></div>
+                <select name='status' id='status'>
+                <tal:entry tal:repeat="option status" tal:define='val status_search'>
+                   <option tal:attributes="selected python: (val == str(option['status']).title())" tal:content="python: option['status'].title()"></option>
+                </tal:entry>
+              </select>
+            </div>
+            <input id="pagination" name="pagination" value="0" type="hidden">
+            <div style="text-align: right">
+                <input type="submit" value="Submit">
+            </div>
+        </fieldset>
     </form>
   <span  style="display: none" id="current" tal:content="context/absolute_url"></span>
-  
-  
-  </dd>
-</dl>
+</div>
+
