@@ -14,7 +14,7 @@
         <property name="portlet_title">Add Search Portlet</property>
 </assignment>
 
- <assignment name="requesttoviewportlet" category="content_type"
+ <assignment name="requesttoviewportlet" category="content_type" insert-before="searchevaldmsportlet"
         key="eval.dms.workspace" manager="plone.leftcolumn"
         type="requesttoviewportlet.portlet" visible="True">
         <property name="portlet_title">Add Request to View Portlet</property>
