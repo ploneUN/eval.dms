@@ -43,25 +43,21 @@
       <table class="listing">
         <thead>
           <th>File</th>
-          <th>Title</th>
-          <th>File</th>
+          <th>Author</th>
+          <th>File Type</th>
           <th>Status</th>
+          <th>Download File</th>
         </thead>
       <tbody>
+
       <tr tal:repeat="brain python: brains[data:data+10]" >
-        <td><a tal:attributes="href python: brain['path']" tal:content="python: brain['id']"></a></td>
-        <td tal:content="python: brain['title']"></td>
-        <td>
-          <tal:element  tal:condition="brain/multifile" tal:repeat="file brain/multifile">
-            <a tal:define="index python: str(repeat['file'].index)" tal:attributes="href python: brain['path']+'/view/++widget++form.widgets.multifile/@@download/'+ index" tal:content="file/filename"></a>
-            <br/>
-          </tal:element>
-        </td>
-
-
-       
-
-        <td tal:content="python: brain['status'].title()"></td>
+        <tal:element tal:define="obj brain/getObject">
+          <td><a tal:attributes="href python: brain.getURL()+ '/view'" tal:content="brain/Title"></a></td>
+          <td tal:content="python: brain.Creator.title()"></td>
+          <td tal:content="obj/getContentType"></td>
+          <td tal:content="brain/review_state"></td>
+          <td><a tal:attributes="href brain/getURL">Download File</a></td>
+        </tal:element>
       </tr>
 
       <tr tal:condition="python: not brains">

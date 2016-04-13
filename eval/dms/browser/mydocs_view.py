@@ -26,21 +26,32 @@ class mydocs_view(dexterity.DisplayForm):
     	path = '/'.join(context.getPhysicalPath())
     	results = []
     	brains = catalog.searchResults(path={'query': path, 'depth':1},
-                    					portal_type='eval.dms.document',
+                                        portal_type=('File','Image'),
                     					sort_on='id', 
                     					sort_order='reverse')
 
         status = ''
+        author = ''
+        file_type = ''
+        title = ''
         if form:
             title = form['title'].lower()
             status = form['status'].lower()
+            file_type = form['file_type'].lower()
+            author = form['author'].lower()
 
         for brain in brains:
     	    obj = brain.getObject()
-            if (status in ['all', None, brain.review_state] and
+            if (status in ['all', '', brain.review_state] and
+                (author in ['', None, 'all'] or author in brain.Creator) and
+                (file_type in ['', None, 'all'] or file_type in obj.getContentType()) and
                 (title in ['', None, 'all'] or title in obj.title.lower())):
-                results.append({'title' : obj.title,
+                results.append({
+                    'title' : obj.title,
     				'id': brain.getId, 
+                    'author': brain.Creator,
+                    'filename': obj.getFilename(),
+                    'file_type': obj.getContentType(),
     				'path': brain.getURL(),
 				    'status':brain.review_state})
     	return results

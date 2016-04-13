@@ -24,15 +24,7 @@ class Index(dexterity.DisplayForm):
     					portal_type=('File','Image'),
     					sort_on='id', 
     					sort_order='reverse' )
-        for brain in brains:
-    	    obj = brain.getObject()
-    	    results.append({
-	    		'title' : obj.title,
-    			'id': brain.getId, 
-    			'path': brain.getURL(),
-                'multifile': obj.multifile,
-				'status':brain.review_state})
-    	return results
+    	return brains
 
     def searchedValue(self, name=None):
         result = 0
