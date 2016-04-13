@@ -16,7 +16,7 @@ grok.templatedir('templates')
 class IContentNavigation(IPortletDataProvider):
     
     button_description = schema.TextLine(
-            title = u"Add Document Portlet Button Label",
+            title = u"Add File Portlet Button Label",
             required=False,
         )
 
@@ -31,7 +31,7 @@ class Assignment(base.Assignment):
        
     @property
     def title(self):
-        return "Add Document Portlet"
+        return "Add File Portlet"
     
 
 class Renderer(base.Renderer):
@@ -49,7 +49,7 @@ class Renderer(base.Renderer):
 
 class AddForm(base.AddForm):
     form_fields = form.Fields(IContentNavigation)
-    label = u"Add 'Add Document Portlet'"
+    label = u"Add 'Add File Portlet'"
     description = ''
     
     def create(self, data):
@@ -59,5 +59,5 @@ class AddForm(base.AddForm):
 
 class EditForm(base.EditForm):
     form_fields = form.Fields(IContentNavigation)
-    label = u"Edit 'Add Document Portlet'"
+    label = u"Edit 'Add File Portlet'"
     description = ''
