@@ -1,6 +1,7 @@
 <div class="side_viewlet state-sign">
     <p style="margin-bottom: 10px">
-	<a class="button add-btn alignL-btn" tal:attributes="href python: view.url()+ '/contact-info'">
+	<a class="button" tal:attributes="href python: view.url()+ '/contact-info'">
+	    <i class="fa fa-envelope-square" aria-hidden="true"></i>
 	    <span>Request to View</span>
 	</a>
     </p>    
