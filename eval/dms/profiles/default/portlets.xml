@@ -11,7 +11,7 @@
  <assignment name="searchevaldmsportlet" category="content_type"
         key="eval.dms.workspace" manager="plone.leftcolumn"
         type="searchevaldmsportlet.portlet" visible="True">
-        <property name="portlet_title">Add Search Portlet</property>
+        <property name="portlet_title">EVAL DMS Search Portlet</property>
 </assignment>
 
  <assignment name="requesttoviewportlet" category="content_type" insert-before="searchevaldmsportlet"

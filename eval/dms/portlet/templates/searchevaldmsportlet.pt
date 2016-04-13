@@ -59,6 +59,8 @@
     <form id="portlet" tal:attributes= "action string:${context/absolute_url}/mydocs_view" method='post' 
                       tal:define="status view/status;
                                   title python: view.searched_value('title');
+                                  author python: view.searched_value('author');
+                                  file_type python: view.searched_value('file_type');
                                   status_search python: view.searched_value('status');">
         <fieldset style="border:1px solid #dcdcdc;font-size:80%;border-radius:5px">
             <legend style="color:#205c90;font-weight:bold;font-size:15px" tal:content="python:  view.contents().portlet_title" />
@@ -68,6 +70,20 @@
               <span class="formHelp"></span>
               <div class="fieldErrorBox"></div>
               <input type="text" name='title' id='title' tal:attributes="value title" placeholder="Enter Title"/>
+            </div>
+
+            <div class="field">
+              <label>Author</label>
+              <span class="formHelp"></span>
+              <div class="fieldErrorBox"></div>
+              <input type="text" name='author' id='author' tal:attributes="value author" placeholder="Enter Author"/>
+            </div>
+
+            <div class="field">
+              <label>File Type</label>
+              <span class="formHelp"></span>
+              <div class="fieldErrorBox"></div>
+              <input type="text" name='file_type' id='file_type' tal:attributes="value file_type" placeholder="Enter File Type"/>
             </div>
         
             <div class="field">

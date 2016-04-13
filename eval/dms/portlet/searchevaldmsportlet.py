@@ -84,7 +84,7 @@ class Renderer(base.Renderer):
 
 class AddForm(base.AddForm):
     form_fields = form.Fields(IContentNavigation)
-    label = u"Add Search Portlet"
+    label = u"EVAL DMS Search Portlet"
     description = ''
     
     def create(self, data):
