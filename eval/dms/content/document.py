@@ -45,10 +45,17 @@ class IDocument(form.Schema, IImageScaleTraversable):
     dexteritytextindexer.searchable('multifile')
     write_permission(multifile='cmf.ReviewPortalContent')
     read_permission(multifile='cmf.ReviewPortalContent')
-    multifile = NamedBlobFile(
-        title=_(u"Document"),
-        description=_(u"Please attach a file"),
-        required=False,
+    # multifile = NamedBlobFile(
+    #     title=_(u"Document"),
+    #     description=_(u"Please attach a file"),
+    #     required=False,
+    #     )
+
+    form.widget(multifile=MultiFileFieldWidget)
+    multifile = schema.List(
+            title=_(u"Document"),
+            required=False,
+            value_type=NamedFile(),
         )
     pass
 

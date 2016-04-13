@@ -44,12 +44,23 @@
         <thead>
           <th>File</th>
           <th>Title</th>
+          <th>File</th>
           <th>Status</th>
         </thead>
       <tbody>
       <tr tal:repeat="brain python: brains[data:data+10]" >
         <td><a tal:attributes="href python: brain['path']" tal:content="python: brain['id']"></a></td>
         <td tal:content="python: brain['title']"></td>
+        <td>
+          <tal:element  tal:condition="brain/multifile" tal:repeat="file brain/multifile">
+            <a tal:define="index python: str(repeat['file'].index)" tal:attributes="href python: brain['path']+'/view/++widget++form.widgets.multifile/@@download/'+ index" tal:content="file/filename"></a>
+            <br/>
+          </tal:element>
+        </td>
+
+
+       
+
         <td tal:content="python: brain['status'].title()"></td>
       </tr>
 
