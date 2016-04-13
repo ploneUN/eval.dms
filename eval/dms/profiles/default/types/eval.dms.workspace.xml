@@ -14,6 +14,7 @@
   <property name="allowed_content_types" purge="False">
     <element value="eval.dms.document" />
     <element value="File" />
+    <element value="Image" />
   </property>
   <property name="allow_discussion">False</property>
 
