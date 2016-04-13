@@ -30,6 +30,7 @@ class Index(dexterity.DisplayForm):
 	    		'title' : obj.title,
     			'id': brain.getId, 
     			'path': brain.getURL(),
+                'multifile': obj.multifile,
 				'status':brain.review_state})
     	return results
 
