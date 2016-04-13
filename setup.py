@@ -37,6 +37,7 @@ setup(name='eval.dms',
           'eea.facetednavigation',
           'plone.formwidget.multifile',
           'redomino.tokenrole',
+          'collective.quickupload',
           # -*- Extra requirements: -*-
       ],
       extras_require={
