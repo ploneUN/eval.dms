@@ -42,7 +42,7 @@
     <element tal:define="brains view/contents; data python: int(view.searchedValue('data'))" >
       <table class="listing">
         <thead>
-          <th>Doc. Id </th>
+          <th>File</th>
           <th>Title</th>
           <th>Status</th>
         </thead>
