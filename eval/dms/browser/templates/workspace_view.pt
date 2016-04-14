@@ -57,7 +57,7 @@
           <td tal:content="obj/getContentType"></td>
           <td tal:content="brain/review_state"></td>
           <td style="text-align: center">
-            <a class="button" tal:attributes="href brain/getURL">
+            <a title="Download File" class="button" tal:attributes="href brain/getURL">
                 <i class="fa fa-download" aria-hidden="true"></i>
             </a>
           </td>
