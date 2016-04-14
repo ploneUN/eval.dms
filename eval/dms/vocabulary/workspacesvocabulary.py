@@ -10,11 +10,11 @@ from eval.dms.content.workspace import IWorkspace
 class Workspaces(grok.GlobalUtility):
     grok.name('eval.dms.workspacesvocabulary')
     grok.implements(IVocabularyFactory)
-    
+
     def __call__(self, context):
         catalog = getToolByName(context, 'portal_catalog')
         brains = catalog(object_provides=IWorkspace.__identifier__)
         path = context.getPhysicalPath()[-1]
         #items = [SimpleTerm(value=brain.UID, token=brain.UID, title=brain.Title) for brain in brains if set(brain.getPath().split('/')[:-2]).issubset(path) and brain.review_state == 'active']
-        items = [SimpleTerm(value=brain.Title, token=brain.Title, title=brain.Title) for brain in brains if path in brain.getPath().split('/')[:-1]]
+        items = [SimpleTerm(value=brain.UID, token=brain.UID, title=brain.Title) for brain in brains if path in brains[4].getPath().split('/')[:-1]]
         return SimpleVocabulary(items)
