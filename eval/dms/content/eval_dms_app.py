@@ -41,8 +41,8 @@ alsoProvides(IEVALDMSApp, IFormFieldProvider)
 @grok.subscribe(IEVALDMSApp, IObjectAddedEvent)
 def _createObject(context, event):
     #auto create config and workspace folders on ppp dms
-    createContentInContainer(context, 'eval.dms.config', checkConstraints=False, title='Config')
-    createContentInContainer(context, 'eval.dms.workspace', checkConstraints=False, title='Workspace')
+    # createContentInContainer(context, 'eval.dms.config', checkConstraints=False, title='Config')
+    # createContentInContainer(context, 'eval.dms.workspace', checkConstraints=False, title='Workspace')
     
     #auto enable faceted navigation
     faceted = getMultiAdapter((context, context.REQUEST), name=u'faceted_subtyper')
