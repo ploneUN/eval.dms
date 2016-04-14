@@ -56,7 +56,11 @@
           <td tal:content="python: brain.Creator.title()"></td>
           <td tal:content="obj/getContentType"></td>
           <td tal:content="brain/review_state"></td>
-          <td><a tal:attributes="href brain/getURL">Download File</a></td>
+          <td style="text-align: center">
+            <a title="Download File" class="button" tal:attributes="href brain/getURL">
+                <i class="fa fa-download" aria-hidden="true"></i>
+            </a>
+          </td>
         </tal:element>
       </tr>
 
