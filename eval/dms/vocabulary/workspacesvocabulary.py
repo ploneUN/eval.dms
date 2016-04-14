@@ -10,7 +10,7 @@ from eval.dms.content.workspace import IWorkspace
 class Workspaces(grok.GlobalUtility):
     grok.name('eval.dms.workspacesvocabulary')
     grok.implements(IVocabularyFactory)
-    
+
     def __call__(self, context):
         catalog = getToolByName(context, 'portal_catalog')
         brains = catalog(object_provides=IWorkspace.__identifier__)
