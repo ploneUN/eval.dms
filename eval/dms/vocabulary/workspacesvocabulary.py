@@ -16,5 +16,5 @@ class Workspaces(grok.GlobalUtility):
         brains = catalog(object_provides=IWorkspace.__identifier__)
         path = context.getPhysicalPath()[-1]
         #items = [SimpleTerm(value=brain.UID, token=brain.UID, title=brain.Title) for brain in brains if set(brain.getPath().split('/')[:-2]).issubset(path) and brain.review_state == 'active']
-        items = [SimpleTerm(value=brain.UID, token=brain.UID, title=brain.Title) for brain in brains if path in brains[4].getPath().split('/')[:-1]]
+        items = [SimpleTerm(value=brain.UID, token=brain.UID, title=brain.Title) for brain in brains if path in brains.getPath().split('/')[:-1]]
         return SimpleVocabulary(items)
