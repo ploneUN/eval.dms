@@ -64,8 +64,13 @@
             <td tal:content="python: brain['file_type']"></td>
     				<!-- <td><a tal:attributes="href python: brain['path']" tal:content="python: brain['filename']"></a></td> -->
             <td tal:content="python: brain['status'].title()"></td>
-            <td><a tal:attributes="href python: brain['path']">Download File</a></td>
+           <!--  <td><a tal:attributes="href python: brain['path']">Download File</a></td> -->
             
+            <td style="text-align: center">
+              <a title="Download File" class="button" tal:attributes="href brain/path">
+                  <i class="fa fa-download" aria-hidden="true"></i>
+              </a>
+            </td>
     				
     			</tr>
     			<tr tal:condition="python: not brains">
