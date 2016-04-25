@@ -45,7 +45,7 @@
           <th>File</th>
           <th>Author</th>
           <th>File Type</th>
-          <th>Status</th>
+          <!--<th>Status</th>-->
           <th>Download File</th>
         </thead>
       <tbody>
@@ -55,7 +55,7 @@
           <td><a tal:attributes="href python: brain.getURL()+ '/view'" tal:content="brain/Title"></a></td>
           <td tal:content="python: brain.Creator.title()"></td>
           <td tal:content="obj/getContentType"></td>
-          <td tal:content="brain/review_state"></td>
+          <!--<td tal:content="brain/review_state"></td>-->
           <td style="text-align: center">
             <a title="Download File" class="button" tal:attributes="href brain/getURL">
                 <i class="fa fa-download" aria-hidden="true"></i>
