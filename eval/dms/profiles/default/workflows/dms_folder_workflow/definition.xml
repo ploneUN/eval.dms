@@ -4,6 +4,7 @@
  <permission>Modify portal content</permission>
  <permission>View</permission>
  <permission>Copy or Move</permission>
+ <permission>Manage token role</permission>
  <state state_id="pending" title="">
   <exit-transition transition_id="publish"/>
   <permission-map name="Access contents information" acquired="False">
@@ -73,6 +74,11 @@
   <permission-map name="View" acquired="False">
    <permission-role>Anonymous</permission-role>
    <permission-role>Authenticated</permission-role>
+  </permission-map>
+  <permission-map name="Manage token role" acquired="False">
+   <permission-role>Owner</permission-role>
+   <permission-role>Manager</permission-role>
+   <permission-role>Site Administrator</permission-role>
   </permission-map>
  </state>
  <transition transition_id="publish" title="Publish" new_state="published" trigger="USER" before_script="" after_script="">
