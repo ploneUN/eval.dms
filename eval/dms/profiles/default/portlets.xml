@@ -20,5 +20,10 @@
         <property name="portlet_title">Add Request to View Portlet</property>
 </assignment>
 
+ <assignment name="quickupload" category="content_type" insert-before="addevaldocportlet"
+        key="eval.dms.workspace" manager="plone.leftcolumn"
+        type="collective.quickupload.QuickUploadPortlet" visible="True">
+        <property name="portlet_title">Quick Upload Portlet</property>
+</assignment>
 
 </portlets>
