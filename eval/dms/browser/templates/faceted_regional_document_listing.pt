@@ -46,8 +46,7 @@
                         pas_member context/@@pas_member;
                         plone_view context/@@plone;
                         current_path python: '/'.join(context.getPhysicalPath())">
-                <div metal:use-macro="context/batch_macros/macros/navigation" />
-                <tal:listing condition="batch">
+                <tal:listing>
                     <table width="100%">
                         <thead>
                             <tr>
@@ -56,7 +55,7 @@
                                 <th>Author</th>
                             </tr>
                         </thead>
-                        <tbody>
+                        <tbody condition="batch">
                             
                             <tal:entry tal:repeat="item batch" metal:define-macro="entries">
                                 <tr tal:condition="python: item.portal_type in ['File', 'Image'] and item.getPath().startswith(current_path)">
