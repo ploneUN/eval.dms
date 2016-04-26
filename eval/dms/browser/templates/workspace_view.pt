@@ -47,6 +47,7 @@
           <th>File Type</th>
           <!--<th>Status</th>-->
           <th>Download File</th>
+          <th>Share File</th>
         </thead>
       <tbody>
 
@@ -61,9 +62,14 @@
                 <i class="fa fa-download" aria-hidden="true"></i>
             </a>
           </td>
+          <td style="text-align: center">
+            <a tal:condition="python: view.roles(obj)" title="Share File" class="button" tal:attributes="href string: ${brain/getURL}/@@token_manage">
+                <i class="fa fa-download" aria-hidden="true"></i>
+                Share File
+            </a>
+          </td>
         </tal:element>
       </tr>
-
       <tr tal:condition="python: not brains">
         <td colspan="6"><center>No Data</center></td>
       </tr>
