@@ -46,8 +46,7 @@
           <th>Author</th>
           <th>File Type</th>
           <!--<th>Status</th>-->
-          <th>Download File</th>
-          <th>Share File</th>
+          <th class="text-center">Actions</th>
         </thead>
       <tbody>
 
@@ -58,14 +57,13 @@
           <td tal:content="obj/getContentType"></td>
           <!--<td tal:content="brain/review_state"></td>-->
           <td style="text-align: center">
-            <a title="Download File" class="button" tal:attributes="href brain/getURL">
+            <a class="tooltips button" tal:attributes="href brain/getURL">
+                <span>Download File</span>
                 <i class="fa fa-download" aria-hidden="true"></i>
             </a>
-          </td>
-          <td style="text-align: center">
-            <a tal:condition="python: view.roles(obj)" title="Share File" class="button" tal:attributes="href string: ${brain/getURL}/@@token_manage">
-                <i class="fa fa-download" aria-hidden="true"></i>
-                Share File
+            <a class="tooltips button" tal:condition="python: view.roles(obj)" tal:attributes="href string: ${brain/getURL}/@@token_manage">
+                <span>Share File</span>
+                <i class="fa fa-share" aria-hidden="true"></i>
             </a>
           </td>
         </tal:element>
