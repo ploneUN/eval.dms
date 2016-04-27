@@ -12,4 +12,5 @@
   <object name="eval.workspace.document" meta_type="Dexterity FTI" />
   <object name="eval.workspace.workspace" meta_type="Dexterity FTI" />
   <object name="eval.workspace.evalworkspaceapp" meta_type="Dexterity FTI" />
+  <object name="eval.workspace.document_file" meta_type="Dexterity FTI" />
 </object>

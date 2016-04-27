@@ -43,7 +43,7 @@
       <table class="listing">
         <thead>
           <th>File</th>
-          <th>Author</th>
+          <th>Contributor</th>
           <th>File Type</th>
           <!--<th>Status</th>-->
           <th class="text-center">Actions</th>
