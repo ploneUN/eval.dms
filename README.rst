@@ -1,3 +1,3 @@
-README for eval.dms
+README for eval.workspace
 ==========================================
 
