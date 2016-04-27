@@ -1,9 +1,13 @@
 <?xml version="1.0"?>
 <object name="portal_workflow" meta_type="Plone Workflow Tool">
   <object name="workspace_file_workflow" meta_type="Workflow"/>
+  <object name="workspace_workflow" meta_type="Workflow"/>
   <bindings>
     <type type_id="File">
       <bound-workflow workflow_id="workspace_file_workflow"/>
+    </type>
+    <type type_id="eval.workspace.workspace">
+      <bound-workflow workflow_id="workspace_workflow"/>
     </type>
  </bindings>
 </object>
