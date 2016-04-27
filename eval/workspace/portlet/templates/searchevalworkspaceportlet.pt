@@ -73,7 +73,7 @@
             </div>
 
             <div class="field">
-              <label>Author</label>
+              <label>Contributor</label>
               <span class="formHelp"></span>
               <div class="fieldErrorBox"></div>
               <input type="text" name='author' id='author' tal:attributes="value author" placeholder="Enter Author"/>
