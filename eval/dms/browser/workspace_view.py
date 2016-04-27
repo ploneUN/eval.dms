@@ -2,6 +2,7 @@ from five import grok
 from plone.directives import dexterity, form
 from eval.dms.content.workspace import IWorkspace
 from Products.CMFCore.utils import getToolByName
+from plone import api
 
 grok.templatedir('templates')
 
@@ -32,3 +33,9 @@ class Index(dexterity.DisplayForm):
             form = self.request.form
             result = form[name]
         return result
+
+    def roles(self, obj=None):
+        current = str(api.user.get_current())
+        roles = api.user.get_roles(username=current, obj= obj)
+        allowed =  ['Owner','Manager', 'Administrator'] 
+        return any((True for x in roles if x in allowed))
