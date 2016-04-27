@@ -15,6 +15,7 @@
     <!--<element value="eval.workspace.document" />-->
     <element value="File" />
     <element value="Image" />
+    <element value="eval.workspace.document_file"/>
   </property>
   <property name="allow_discussion">False</property>
 
