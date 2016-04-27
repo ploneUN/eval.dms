@@ -3,7 +3,7 @@ import os
 
 version = '1.0'
 
-setup(name='eval.dms',
+setup(name='eval.workspace',
       version=version,
       description="Regional and EVAL HQ Repository",
       long_description=open("README.rst").read() + "\n" +
