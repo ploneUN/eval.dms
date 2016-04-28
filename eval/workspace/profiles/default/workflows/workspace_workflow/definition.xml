@@ -1,11 +1,11 @@
 <?xml version="1.0"?>
-<dc-workflow workflow_id="workspace_workflow" title="Workspace Workflow" description="Workspace Workflow" state_variable="review_state" initial_state="internally_published" manager_bypass="False">
+<dc-workflow workflow_id="workspace_workflow" title="Workspace Workflow" description="Workspace Workflow" state_variable="review_state" initial_state="published" manager_bypass="False">
  <permission>Access contents information</permission>
  <permission>Modify portal content</permission>
  <permission>View</permission>
  <permission>Copy or Move</permission>
  <permission>Manage token role</permission>
- <state state_id="internally_published" title="Internally Published">
+ <state state_id="published" title="Published">
   <description>Visible to everyone, editable by the owner.</description>
   <exit-transition transition_id="retract"/>
   <permission-map name="Access contents information" acquired="False">
