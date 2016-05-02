@@ -24,7 +24,8 @@
         title="ITokenRolesProviding"
         provides="redomino.tokenrole.interfaces.ITokenRolesProviding"
     />
-
+    
+    <cmf:registerDirectory name="skins" directory="skins" recursive="True" />
     <!-- -*- extra stuff goes here -*- -->
 
     <class class="eval.workspace.content.document.IDocument">
