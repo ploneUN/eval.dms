@@ -1,0 +1,6 @@
+<object name="portal_skins" meta_type="Plone Skins Tool">
+<object name="eval_workspace" meta_type="Filesystem Directory View" directory="eval.workspace:skins/eval_workspace"/>
+    <skin-path name="*">
+        <layer name="eval_workspace" insert-after="custom"/>
+    </skin-path>
+</object>
