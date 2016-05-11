@@ -9,5 +9,8 @@
     <type type_id="eval.workspace.workspace">
       <bound-workflow workflow_id="workspace_workflow"/>
     </type>
+    <type type_id="eval.workspace.evalworkspaceapp">
+      <bound-workflow workflow_id="workspace_app_workflow"/>
+    </type>
  </bindings>
 </object>
