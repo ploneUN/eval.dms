@@ -6,66 +6,24 @@
  <permission>Copy or Move</permission>
  <permission>Manage token role</permission>
  <permission>Add portal content</permission>
- <state state_id="pending" title="">
-  <exit-transition transition_id="publish_internally"/>
-  <permission-map name="Access contents information" acquired="False">
-   <permission-role>Manager</permission-role>
-   <permission-role>Reviewer</permission-role>
-   <permission-role>Site Administrator</permission-role>
-  </permission-map>
-  <permission-map name="Add portal content" acquired="False">
-   <permission-role>Manager</permission-role>
-   <permission-role>Site Administrator</permission-role>
-  </permission-map>
-  <permission-map name="Copy or Move" acquired="False">
-   <permission-role>Reviewer</permission-role>
-   <permission-role>Manager</permission-role>
-   <permission-role>Site Administrator</permission-role>
-  </permission-map>
-  <permission-map name="Modify portal content" acquired="False">
-   <permission-role>Manager</permission-role>
-   <permission-role>Site Administrator</permission-role>
-  </permission-map>
-  <permission-map name="View" acquired="False">
-   <permission-role>Manager</permission-role>
-   <permission-role>Reviewer</permission-role>
-   <permission-role>Site Administrator</permission-role>
-  </permission-map>
-  <permission-map name="Manage token role" acquired="False">
-   <permission-role>Manager</permission-role>
-   <permission-role>Site Administrator</permission-role>
-  </permission-map>
- </state>
  <state state_id="draft" title="Draft">
   <exit-transition transition_id="submit"/>
   <permission-map name="Access contents information" acquired="False">
-   <permission-role>Manager</permission-role>
-   <permission-role>Owner</permission-role>
    <permission-role>Site Administrator</permission-role>
   </permission-map>
   <permission-map name="Add portal content" acquired="False">
-   <permission-role>Owner</permission-role>
-   <permission-role>Manager</permission-role>
    <permission-role>Site Administrator</permission-role>
   </permission-map>
   <permission-map name="Copy or Move" acquired="False">
-   <permission-role>Owner</permission-role>
-   <permission-role>Manager</permission-role>
    <permission-role>Site Administrator</permission-role>
   </permission-map>
   <permission-map name="Modify portal content" acquired="False">
-   <permission-role>Owner</permission-role>
-   <permission-role>Manager</permission-role>
    <permission-role>Site Administrator</permission-role>
   </permission-map>
   <permission-map name="View" acquired="False">
-   <permission-role>Owner</permission-role>
-   <permission-role>Manager</permission-role>
    <permission-role>Site Administrator</permission-role>
   </permission-map>
   <permission-map name="Manage token role" acquired="False">
-   <permission-role>Owner</permission-role>
-   <permission-role>Manager</permission-role>
    <permission-role>Site Administrator</permission-role>
   </permission-map>
  </state>
@@ -76,34 +34,26 @@
    <permission-role>Member</permission-role>
    <permission-role>Contributor</permission-role>
    <permission-role>Authenticated</permission-role>
+   <permission-role>Manager</permission-role>
+   <permission-role>Site Administrator</permission-role>
   </permission-map>
   <permission-map name="Add portal content" acquired="False">
-   <permission-role>Member</permission-role>
-   <permission-role>Authenticated</permission-role>
-   <permission-role>Contributor</permission-role>
-   <permission-role>Owner</permission-role>
-   <permission-role>Manager</permission-role>
    <permission-role>Site Administrator</permission-role>
   </permission-map>
   <permission-map name="Copy or Move" acquired="False">
-   <permission-role>Member</permission-role>
-   <permission-role>Authenticated</permission-role>
-   <permission-role>Contributor</permission-role>
-   <permission-role>Manager</permission-role>
    <permission-role>Site Administrator</permission-role>
   </permission-map>
   <permission-map name="Modify portal content" acquired="False">
-   <permission-role>Manager</permission-role>
    <permission-role>Site Administrator</permission-role>
   </permission-map>
   <permission-map name="View" acquired="False">
    <permission-role>Member</permission-role>
    <permission-role>Contributor</permission-role>
    <permission-role>Authenticated</permission-role>
+   <permission-role>Manager</permission-role>
+   <permission-role>Site Administrator</permission-role>
   </permission-map>
   <permission-map name="Manage token role" acquired="False">
-   <permission-role>Owner</permission-role>
-   <permission-role>Manager</permission-role>
    <permission-role>Site Administrator</permission-role>
   </permission-map>
  </state>
@@ -113,13 +63,7 @@
    <guard-permission>Review portal content</guard-permission>
   </guard>
  </transition>
- <transition transition_id="retract" title="Retract" new_state="draft" trigger="USER" before_script="" after_script="">
-  <action url="%(content_url)s/content_status_modify?workflow_action=retract" category="workflow" icon="">Retract</action>
-  <guard>
-   <guard-permission>Review portal content</guard-permission>
-  </guard>
- </transition>
- <transition transition_id="submit" title="Submit" new_state="pending" trigger="USER" before_script="" after_script="">
+ <transition transition_id="submit" title="Submit" new_state="publish_internally" trigger="USER" before_script="" after_script="">
   <action url="%(content_url)s/content_status_modify?workflow_action=submit" category="workflow" icon="">Submit</action>
   <guard>
   </guard>
