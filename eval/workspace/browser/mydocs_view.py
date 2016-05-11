@@ -26,7 +26,7 @@ class mydocs_view(dexterity.DisplayForm):
     	path = '/'.join(context.getPhysicalPath())
     	results = []
     	brains = catalog.searchResults(path={'query': path, 'depth':1},
-                                        portal_type=('File','Image'),
+                                        portal_type=('eval.workspace.document_file'),
                     					sort_on='id', 
                     					sort_order='reverse')
 
@@ -44,14 +44,14 @@ class mydocs_view(dexterity.DisplayForm):
     	    obj = brain.getObject()
             if (status in ['all', '', brain.review_state] and
                 (author in ['', None, 'all'] or author in brain.Creator) and
-                (file_type in ['', None, 'all'] or file_type in obj.getContentType()) and
+                (file_type in ['', None, 'all'] or file_type in obj.file.contentType) and
                 (title in ['', None, 'all'] or title in obj.title.lower())):
                 results.append({
                     'title' : obj.title,
     				'id': brain.getId, 
                     'author': brain.Creator,
-                    'filename': obj.getFilename(),
-                    'file_type': obj.getContentType(),
+                    'filename': obj.file.filename,
+                    'file_type': obj.file.contentType,
     				'path': brain.getURL(),
 				    'status':brain.review_state})
     	return results

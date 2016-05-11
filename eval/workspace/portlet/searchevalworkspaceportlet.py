@@ -77,7 +77,7 @@ class Renderer(base.Renderer):
     #returns form value request
     def searched_value(self, name=None):
         result = ''
-        if self.request.form.has_key('project'):
+        if self.request.form.has_key('author'):
             form = self.request.form
             result = form[name]
         return result
