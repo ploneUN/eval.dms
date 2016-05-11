@@ -38,7 +38,7 @@ setup(name='eval.workspace',
           'plone.formwidget.multifile',
           'redomino.tokenrole',
           'collective.quickupload',
-          'plone.app.contenttypes',
+          # 'plone.app.contenttypes',
           'plone.api',
           # -*- Extra requirements: -*-
       ],
