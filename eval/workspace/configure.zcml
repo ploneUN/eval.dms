@@ -32,6 +32,10 @@
         <require permission="cmf.ReviewPortalContent" interface="redomino.tokenrole.interfaces.ITokenRolesProviding"/>
     </class> 
 
+    <class class="eval.workspace.content.document_file.DocumentFile">
+        <require permission="cmf.ReviewPortalContent" interface="redomino.tokenrole.interfaces.ITokenRolesProviding"/>
+    </class> 
+
     <!-- -*- extra stuff goes here -*- -->
 
 </configure>

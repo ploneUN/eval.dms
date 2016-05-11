@@ -55,24 +55,28 @@
           <th>Contributor</th>
           <th>File Type</th>
           <th>Status</th>
-          <th>Download File</th>
+          <th class="text-center">Actions</th>
     		</thead>
     		<tbody>
-    			<tr tal:repeat="brain python: brains[data:data+10]" >
-    				<td><a tal:attributes="href python: brain['path']+'/view'" tal:content="python: brain['title']"></a></td>
-            <td tal:content="python: brain['author'].title()"></td>
-            <td tal:content="python: brain['file_type']"></td>
-    				<!-- <td><a tal:attributes="href python: brain['path']" tal:content="python: brain['filename']"></a></td> -->
-            <td tal:content="python: brain['status'].title()"></td>
-           <!--  <td><a tal:attributes="href python: brain['path']">Download File</a></td> -->
-            
-            <td style="text-align: center">
-              <a title="Download File" class="button" tal:attributes="href brain/path">
-                  <i class="fa fa-download" aria-hidden="true"></i>
-              </a>
-            </td>
-    				
-    			</tr>
+    			 <tr tal:repeat="brain python: brains[data:data+10]" >
+            <tal:element tal:define="obj brain/getObject">
+              <td><a tal:attributes="href string: ${brain/getURL}/view" tal:content="brain/Title"></a></td>
+              <td tal:content="brain/Creator"></td>
+              <td tal:content="obj/file/contentType"></td>
+              <td tal:content="brain/review_state"></td>
+              <!--<td tal:content="brain/review_state"></td>-->
+              <td style="text-align: center">
+                <a class="tooltips button" tal:attributes="href brain/getURL">
+                    <span>Download File</span>
+                    <i class="fa fa-download" aria-hidden="true"></i>
+                </a>
+                <a class="tooltips button" tal:condition="python: view.roles(obj)" tal:attributes="href string: ${brain/getURL}/@@token_manage">
+                    <span>Share File</span>
+                    <i class="fa fa-share" aria-hidden="true"></i>
+                </a>
+              </td>
+            </tal:element>
+          </tr>
     			<tr tal:condition="python: not brains">
     				<td colspan="6"><center>No Data</center></td>
     			</tr>
