@@ -11,6 +11,7 @@
         key="eval.workspace.workspace" manager="plone.leftcolumn"
         type="collective.quickupload.QuickUploadPortlet" visible="True">
         <property name="portlet_title">Quick Upload Portlet</property>
+        <property name="upload_portal_type">eval.workspace.document_file</property>
 </assignment>
 
 </portlets>
