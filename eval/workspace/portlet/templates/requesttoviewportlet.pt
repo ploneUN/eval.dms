@@ -1,4 +1,4 @@
-<div class="side_viewlet state-sign">
+<div class="side_viewlet state-sign" style="display:none">
     <p style="margin-bottom: 10px">
 	<a class="button" tal:attributes="href python: view.url()+ '/contact-info'">
 	    <i class="fa fa-envelope-square" aria-hidden="true"></i>
