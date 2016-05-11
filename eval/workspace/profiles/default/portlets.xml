@@ -1,17 +1,25 @@
 <?xml version="1.0"?>
 <portlets>
 
- <assignment name="searchevalworkspaceportlet" category="content_type"
+<assignment name="mydocs_portlet" category="content_type" insert-before="*"
+        key="eval.workspace.workspace" manager="plone.leftcolumn"
+        type="mydocs_portlet.portlet" visible="True">
+        <property name="portlet_title">My Documents Portlet</property>
+</assignment>
+
+<assignment name="searchevalworkspaceportlet" insert-after="mydocs_portlet" category="content_type"
         key="eval.workspace.workspace" manager="plone.leftcolumn"
         type="searchevalworkspaceportlet.portlet" visible="True">
         <property name="portlet_title">EVAL Workspace Search Portlet</property>
 </assignment>
 
- <assignment name="quickupload" category="content_type" insert-before="searchevalworkspaceportlet"
+<assignment name="quickupload" category="content_type" insert-after="searchevalworkspaceportlet"
         key="eval.workspace.workspace" manager="plone.leftcolumn"
         type="collective.quickupload.QuickUploadPortlet" visible="True">
         <property name="portlet_title">Quick Upload Portlet</property>
         <property name="upload_portal_type">eval.workspace.document_file</property>
 </assignment>
+
+
 
 </portlets>

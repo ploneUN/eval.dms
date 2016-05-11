@@ -2,13 +2,14 @@ from five import grok
 from plone.directives import dexterity, form
 from eval.workspace.content.workspace import IWorkspace
 from Products.CMFCore.utils import getToolByName
+from plone import api
 
 grok.templatedir('templates')
 
-class mydocs_view(dexterity.DisplayForm):
+class search_docs_view(dexterity.DisplayForm):
     grok.context(IWorkspace)
     grok.require('zope2.View')
-    grok.template('mydocs_view')
+    grok.template('search_docs_view')
 
     @property
     def catalog(self):
@@ -46,14 +47,7 @@ class mydocs_view(dexterity.DisplayForm):
                 (author in ['', None, 'all'] or author in brain.Creator) and
                 (file_type in ['', None, 'all'] or file_type in obj.file.contentType) and
                 (title in ['', None, 'all'] or title in obj.title.lower())):
-                results.append({
-                    'title' : obj.title,
-    				'id': brain.getId, 
-                    'author': brain.Creator,
-                    'filename': obj.file.filename,
-                    'file_type': obj.file.contentType,
-    				'path': brain.getURL(),
-				    'status':brain.review_state})
+                results.append(brain)
     	return results
 
     def searchedValue(self, name=None):
@@ -62,3 +56,9 @@ class mydocs_view(dexterity.DisplayForm):
         if form.has_key('data'):
             result = form[name]
         return result
+
+    def roles(self, obj=None):
+        current = str(api.user.get_current())
+        roles = api.user.get_roles(username=current, obj= obj)
+        allowed =  ['Owner','Manager', 'Administrator'] 
+        return any((True for x in roles if x in allowed))

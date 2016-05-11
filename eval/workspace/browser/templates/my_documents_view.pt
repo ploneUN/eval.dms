@@ -1,0 +1,97 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en"
+      xmlns:tal="http://xml.zope.org/namespaces/tal"
+      xmlns:metal="http://xml.zope.org/namespaces/metal"
+      xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+      lang="en"
+      metal:use-macro="context/main_template/macros/master"
+      i18n:domain="ilo.qa">
+<body>
+
+<tal:comment tal:condition="nothing">
+    This is a sample view template. It will not be used for rendering the
+    content unless activated by creation of a view class with a matching name.
+    
+    Note that we're using Plone 4 macros. Replace them with Plone 3 macros
+    if needed.
+</tal:comment>
+
+<metal:javascript_head fill-slot="javascript_head_slot">
+    <script type="text/javascript">
+    $(document).ready(function(){
+        var current_URL = $("span#current").html()+'/my_documents_view';
+        var data = $("span#data").html();
+        $("#previous").click(function(){
+            data = parseInt(data) -10;
+          window.location = current_URL + '?data=' + data ;
+        });
+
+        $("#next").click(function(){
+            data = parseInt(data) +10;
+          window.location = current_URL + '?data=' + data ;
+        });
+
+         $("#previous1").click(function(){
+            data1 = parseInt(data1) -10;
+          window.location = current_URL + '?data=' + data ;
+        });
+
+        $("#next1").click(function(){
+            data1 = parseInt(data1) +10;
+          window.location = current_URL + '?data=' + data ;
+        });
+      });
+</script>
+</metal:javascript_head>
+
+<metal:main fill-slot="content-core">
+  <metal:content-core define-macro="content-core">
+
+    <form method='post'>
+      <span style="display: none" tal:content="python: view.searchedValue('data')" name='data' id='data'></span>
+    </form>
+
+    <h1>My Documents</h1>
+    <element tal:define="brains view/contents; data python: int(view.searchedValue('data'))" >
+    <table width='100%' class="listing">
+        <thead>
+          <tr>
+            <th>File</th>
+            <th>Contributor</th>
+            <th>File Type</th>
+            <th>Status</th>
+            <th>Download File</th>
+          </tr>
+        </thead>
+        <tbody tal:define="brains view/contents" tal:condition="brains">
+            <tr tal:repeat="brain python: brains[data:data+10]">
+                <tal:element tal:define="obj brain/getObject">
+                  <td><a tal:attributes="href string: ${brain/getURL}/view" tal:content="brain/Title"></a></td>
+                  <td tal:content="brain/Creator"></td>
+                  <td tal:content="obj/file/contentType"></td>
+                  <td tal:content="brain/review_state"></td>
+                  <td style="text-align: center">
+                    <a class="tooltips button" tal:attributes="href brain/getURL">
+                      <span>Download File</span>
+                      <i class="fa fa-download" aria-hidden="true"></i>
+                    </a>
+                    <a class="tooltips button" tal:condition="python: view.roles(obj)" tal:attributes="href string: ${brain/getURL}/@@token_manage">
+                        <span>Share File</span>
+                        <i class="fa fa-share" aria-hidden="true"></i>
+                    </a>
+                  </td>
+                </tal:element>
+              </tr>
+        </tbody>
+    </table>
+     <button id="previous" tal:condition="python: data">previous</button>
+    <button id="next" tal:condition="python: len(brains[data:data+11]) > 10">next</button>
+    </element>
+    <br/>
+    <a tal:attributes="href string:${context/absolute_url}" tal:content="string: Back to ${context/Title}"></a>
+
+  </metal:content-core>
+</metal:main>
+
+</body>
+</html>
+

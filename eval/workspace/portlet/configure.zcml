@@ -33,4 +33,13 @@
         editview=".searchevalworkspaceportlet.EditForm"
         />
 
+    <plone:portlet
+        name="mydocs_portlet.portlet"
+        interface=".mydocs_portlet.IContentNavigation"
+        assignment=".mydocs_portlet.Assignment"
+        renderer=".mydocs_portlet.Renderer"
+        addview=".mydocs_portlet.AddForm"
+        editview=".mydocs_portlet.EditForm"
+        />
+
 </configure>

@@ -15,6 +15,35 @@
     if needed.
 </tal:comment>
 
+<metal:javascript_head fill-slot="javascript_head_slot">
+    <script type="text/javascript">
+    $(document).ready(function(){
+        var current_URL = $("span#current").html();
+        var data = $("span#data").html();
+        var data1 = $("span#data1").html();
+        $("#previous").click(function(){
+            data = parseInt(data) -10;
+          window.location = current_URL + '?data=' + data ;
+        });
+
+        $("#next").click(function(){
+            data = parseInt(data) +10;
+          window.location = current_URL + '?data=' + data ;
+        });
+
+         $("#previous1").click(function(){
+            data1 = parseInt(data1) -10;
+          window.location = current_URL + '?data=' + data ;
+        });
+
+        $("#next1").click(function(){
+            data1 = parseInt(data1) +10;
+          window.location = current_URL + '?data=' + data ;
+        });
+      });
+</script>
+</metal:javascript_head>
+
 <metal:main fill-slot="content-core">
   <metal:content-core define-macro="content-core">
 
