@@ -13,8 +13,6 @@
   <property name="filter_content_types">True</property>  
   <property name="allowed_content_types" purge="False">
     <!--<element value="eval.workspace.document" />-->
-    <element value="File" />
-    <element value="Image" />
     <element value="eval.workspace.document_file"/>
   </property>
   <property name="allow_discussion">False</property>
