@@ -8,6 +8,5 @@
         <dependency>profile-eea.facetednavigation:default</dependency>
         <dependency>profile-redomino.tokenrole:default</dependency>
         <dependency>profile-collective.quickupload:default</dependency>
-        <dependency>profile-plone.app.contenttypes:default</dependency>
     </dependencies>
 </metadata>
