@@ -54,7 +54,7 @@
         <tal:element tal:define="obj brain/getObject">
           <td><a tal:attributes="href python: brain.getURL()+ '/view'" tal:content="brain/Title"></a></td>
           <td tal:content="python: brain.Creator.title()"></td>
-          <td tal:content="obj/getContentType"></td>
+          <td tal:content="python: obj.file.contentType"></td>
           <!--<td tal:content="brain/review_state"></td>-->
           <td style="text-align: center">
             <a class="tooltips button" tal:attributes="href brain/getURL">
@@ -79,12 +79,7 @@
 
 <span  style="display: none" id="current" tal:content="python: '/'.join(context.getPhysicalPath())"></span>
 
-   <!--  <fieldset id="folder-listing">
-        <legend>Contents</legend>
-        <tal:block define="listing_macro context/folder_listing/macros/listing">
-            <metal:use_macro use-macro="listing_macro" />
-        </tal:block>
-    </fieldset> -->
+
 
   </metal:content-core>
 </metal:main>
