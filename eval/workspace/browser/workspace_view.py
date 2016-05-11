@@ -22,7 +22,7 @@ class Index(dexterity.DisplayForm):
     	path = '/'.join(context.getPhysicalPath())
     	results = []
     	brains = catalog.searchResults(path={'query': path, 'depth':1},
-    					portal_type=('File','Image'),
+    					portal_type=('eval.workspace.document_file',),
     					sort_on='id', 
     					sort_order='reverse' )
     	return brains
