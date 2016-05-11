@@ -57,12 +57,6 @@
    <permission-role>Site Administrator</permission-role>
   </permission-map>
  </state>
- <transition transition_id="publish_internally" title="Publish Internally" new_state="internally_published" trigger="USER" before_script="" after_script="">
-  <action url="%(content_url)s/content_status_modify?workflow_action=publish_internally" category="workflow" icon="">Publish</action>
-  <guard>
-   <guard-permission>Review portal content</guard-permission>
-  </guard>
- </transition>
  <transition transition_id="submit" title="Submit" new_state="publish_internally" trigger="USER" before_script="" after_script="">
   <action url="%(content_url)s/content_status_modify?workflow_action=submit" category="workflow" icon="">Submit</action>
   <guard>
