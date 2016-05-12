@@ -3,7 +3,7 @@
 
     <portlet
             addview="mydocs_portlet.portlet"
-            title="My Questions Button Portlet"
+            title="My Documents Portlet"
             description=""
     /> 
 <!--<assignment name="mydocs_portlet" category="content_type" insert-before="*"
