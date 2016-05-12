@@ -23,6 +23,11 @@ from plone.multilingualbehavior.directives import languageindependent
 from collective import dexteritytextindexer
 
 from eval.workspace import MessageFactory as _
+from zope.app.container.interfaces import IObjectAddedEvent
+from zope.container.interfaces import INameChooser
+from zope.component import getUtility, getMultiAdapter
+from plone.portlets.interfaces import IPortletManager, IPortletAssignmentMapping, IPortletRetriever
+from eval.workspace.portlet import mydocs_portlet
 
 
 # Interface class; used to define content-type schema.
@@ -34,3 +39,12 @@ class IWorkspace(form.Schema, IImageScaleTraversable):
     pass
 
 alsoProvides(IWorkspace, IFormFieldProvider)
+
+@grok.subscribe(IWorkspace, IObjectAddedEvent)
+def _createObject(context, event):
+    column = getUtility(IPortletManager, name=u'plone.leftcolumn', context=context)
+    manager = getMultiAdapter((context, column,), IPortletAssignmentMapping)
+    assignment = mydocs_portlet.Assignment()
+    chooser = INameChooser(manager)
+    assignment.button_label = 'My Documents Portlet'
+    manager[chooser.chooseName(None, assignment)] = assignment
