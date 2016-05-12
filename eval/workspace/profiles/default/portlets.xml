@@ -1,11 +1,16 @@
 <?xml version="1.0"?>
 <portlets>
 
-<assignment name="mydocs_portlet" category="content_type" insert-before="*"
+    <portlet
+            addview="myquestionsportlet.portlet"
+            title="My Questions Button Portlet"
+            description=""
+    /> 
+<!--<assignment name="mydocs_portlet" category="content_type" insert-before="*"
         key="eval.workspace.workspace" manager="plone.leftcolumn"
         type="mydocs_portlet.portlet" visible="True">
         <property name="portlet_title">My Documents Portlet</property>
-</assignment>
+</assignment>-->
 
 <assignment name="searchevalworkspaceportlet" insert-after="mydocs_portlet" category="content_type"
         key="eval.workspace.workspace" manager="plone.leftcolumn"
