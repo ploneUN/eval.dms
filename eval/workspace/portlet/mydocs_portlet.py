@@ -9,31 +9,34 @@ from plone.portlets.interfaces import IPortletDataProvider
 from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
 from Products.CMFCore.utils import getToolByName
 from plone.app.form.widgets.wysiwygwidget import WYSIWYGWidget
+from Products.CMFCore.utils import getToolByName
+from operator import itemgetter
+from zope.component.hooks import getSite
+
 
 
 grok.templatedir('templates')
 
 class IContentNavigation(IPortletDataProvider):
     
-    button_description = schema.TextLine(
-            title = u"Add My Document Portlet Button Label",
+    button_label = schema.TextLine(
+            title = u"My Documents Button Label",
             required=False,
         )
-
+    
 
 class Assignment(base.Assignment):
     implements(IContentNavigation)
     
     
-    def __init__(self, button_description=None):
-        self.button_description = button_description
+    def __init__(self, button_label=None):
+        self.button_label = button_label
        
        
     @property
     def title(self):
-        return "Add My Document Portlet"
+        return "My Documents Button Portlet"
     
-
 class Renderer(base.Renderer):
     render = ViewPageTemplateFile('templates/mydocs_portlet.pt')
     def __init__(self, context, request, view, manager, data):
@@ -43,13 +46,17 @@ class Renderer(base.Renderer):
         self.manager = manager
         self.data = data
         
-        
     def contents(self):
         return self.data
+    
+    def myquestions_url(self):
+        return self.context.absolute_url()+'/my_documents_view'
+    
 
 class AddForm(base.AddForm):
     form_fields = form.Fields(IContentNavigation)
-    label = u"Add 'My Document Portlet'"
+    # form_fields['item_title'].custom_widget = WYSIWYGWidget
+    label = u"Add My Documents Button Portlet"
     description = ''
     
     def create(self, data):
@@ -59,5 +66,8 @@ class AddForm(base.AddForm):
 
 class EditForm(base.EditForm):
     form_fields = form.Fields(IContentNavigation)
-    label = u"Edit 'My Document Portlet'"
+    # form_fields['item_title'].custom_widget = WYSIWYGWidget
+    label = u"Add My Documents Button Portlet"
     description = ''
+    
+    
