@@ -1,5 +1,5 @@
 <div class="side_viewlet state-sign" tal:condition="python: context.portal_type == 'eval.workspace.workspace'">
-    <a class="button expand" tal:attributes="href view/my_documents_view">
+    <a class="button expand" tal:attributes="href string:${context/absolute_url}/my_documents_view">
         <i class="fa"></i> <span tal:content="python: view.contents().button_label">My Documents</span></a>
 </div>
 <!--<a tal:attributes="href string:${context/absolute_url}/my_documents_view">My Documents</a>-->
