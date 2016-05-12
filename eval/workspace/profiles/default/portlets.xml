@@ -3,7 +3,7 @@
 
     <portlet
             addview="mydocs_portlet.portlet"
-            title="My Documents Portlet"
+            title="My Documents"
             description=""
     /> 
 <!--<assignment name="mydocs_portlet" category="content_type" insert-before="*"
