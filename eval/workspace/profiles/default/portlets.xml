@@ -2,7 +2,7 @@
 <portlets>
 
     <portlet
-            addview="myquestionsportlet.portlet"
+            addview="mydocs_portlet.portlet"
             title="My Questions Button Portlet"
             description=""
     /> 
