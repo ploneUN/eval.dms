@@ -55,7 +55,7 @@
     }
 </style>
 
-<div class="portlet searchrequestportlet" tal:condition="python: view.roles()">
+<div class="portlet searchrequestportlet">
     <form id="portlet" tal:attributes= "action string:${context/absolute_url}/search_docs_view" method='post' 
                       tal:define="status view/status;
                                   title python: view.searched_value('title');
