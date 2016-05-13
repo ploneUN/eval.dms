@@ -46,5 +46,5 @@ def _createObject(context, event):
     manager = getMultiAdapter((context, column,), IPortletAssignmentMapping)
     assignment = mydocs_portlet.Assignment()
     chooser = INameChooser(manager)
-    assignment.button_label = 'My Documents Portlet'
+    assignment.button_label = 'My Documents'
     manager[chooser.chooseName(None, assignment)] = assignment
