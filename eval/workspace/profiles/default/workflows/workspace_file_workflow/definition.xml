@@ -1,37 +1,93 @@
 <?xml version="1.0"?>
-<dc-workflow workflow_id="workspace_file_workflow" title="File Workflow" description="File Workflow" state_variable="review_state" initial_state="internally_published" manager_bypass="False">
+<dc-workflow workflow_id="workspace_file_workflow" title="File Workflow" description="File Workflow" state_variable="review_state" initial_state="shared_intranet" manager_bypass="False">
  <permission>Access contents information</permission>
- <permission>Modify portal content</permission>
- <permission>View</permission>
  <permission>Copy or Move</permission>
  <permission>Manage token role</permission>
- <state state_id="internally_published" title="Internally Published">
+ <permission>Modify portal content</permission>
+ <permission>View</permission>
+ <state state_id="shared_intranet" title="Shared: Intranet">
   <description>Visible to everyone, editable by the owner.</description>
   <exit-transition transition_id="retract"/>
   <permission-map name="Access contents information" acquired="False">
+   <permission-role>Manager</permission-role>
+   <permission-role>Member</permission-role>
    <permission-role>Owner</permission-role>
-   <permission-role>Authenticated</permission-role>
+   <permission-role>Reviewer</permission-role>
+   <permission-role>Site Administrator</permission-role>
   </permission-map>
   <permission-map name="Copy or Move" acquired="False">
    <permission-role>Manager</permission-role>
+   <permission-role>Reviewer</permission-role>
+   <permission-role>Site Administrator</permission-role>
+  </permission-map>
+  <permission-map name="Manage token role" acquired="False">
+   <permission-role>Manager</permission-role>
+   <permission-role>Owner</permission-role>
+   <permission-role>Reviewer</permission-role>
    <permission-role>Site Administrator</permission-role>
   </permission-map>
   <permission-map name="Modify portal content" acquired="False">
    <permission-role>Manager</permission-role>
+   <permission-role>Owner</permission-role>
+   <permission-role>Reviewer</permission-role>
    <permission-role>Site Administrator</permission-role>
   </permission-map>
   <permission-map name="View" acquired="False">
-   <permission-role>Owner</permission-role>
-   <permission-role>Authenticated</permission-role>
    <permission-role>Manager</permission-role>
-   <permission-role>Site Administrator</permission-role>
-  </permission-map>
-  <permission-map name="Manage token role" acquired="False">
+   <permission-role>Member</permission-role>
    <permission-role>Owner</permission-role>
-   <permission-role>Manager</permission-role>
+   <permission-role>Reviewer</permission-role>
    <permission-role>Site Administrator</permission-role>
   </permission-map>
  </state>
+ <state state_id="private" title="Private">
+  <description>item is accessible owner and admin only</description>
+  <exit-transition transition_id="share_intranet"/>
+  <permission-map name="Access contents information" acquired="False">
+   <permission-role>Manager</permission-role>
+   <permission-role>Owner</permission-role>
+   <permission-role>Reviewer</permission-role>
+   <permission-role>Site Administrator</permission-role>
+  </permission-map>
+  <permission-map name="Copy or Move" acquired="False">
+   <permission-role>Manager</permission-role>
+   <permission-role>Reviewer</permission-role>
+   <permission-role>Site Administrator</permission-role>
+  </permission-map>
+  <permission-map name="Manage token role" acquired="False">
+   <permission-role>Manager</permission-role>
+   <permission-role>Reviewer</permission-role>
+   <permission-role>Site Administrator</permission-role>
+  </permission-map>
+  <permission-map name="Modify portal content" acquired="False">
+   <permission-role>Manager</permission-role>
+   <permission-role>Owner</permission-role>
+   <permission-role>Reviewer</permission-role>
+   <permission-role>Site Administrator</permission-role>
+  </permission-map>
+  <permission-map name="View" acquired="False">
+   <permission-role>Manager</permission-role>
+   <permission-role>Owner</permission-role>
+   <permission-role>Reviewer</permission-role>
+   <permission-role>Site Administrator</permission-role>
+  </permission-map>
+ </state>
+ <transition transition_id="retract" title="Retract" new_state="private" trigger="USER" before_script="" after_script="">
+  <action url="%(content_url)s/content_status_modify?workflow_action=retract" category="workflow" icon="">Retract</action>
+  <guard>
+   <guard-role>Owner</guard-role>
+   <guard-role>Site Administrator</guard-role>
+   <guard-role>Manager</guard-role>
+  </guard>
+ </transition>
+ <transition transition_id="share_intranet" title="Share: Intranet" new_state="shared_intranet" trigger="USER" before_script="" after_script="">
+  <action url="%(content_url)s/content_status_modify?workflow_action=share_intranet" category="workflow" icon="">Share: Intranet</action>
+  <guard>
+   <guard-role>Owner</guard-role>
+   <guard-role>Site Administrator</guard-role>
+   <guard-role>Manager</guard-role>
+  </guard>
+ </transition>
  <variable variable_id="action" for_catalog="False" for_status="True" update_always="True">
   <description>Previous transition</description>
   <default>
