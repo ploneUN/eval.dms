@@ -1,25 +1,23 @@
 <?xml version="1.0"?>
-<object name="eval.workspace.workspace"
+<object name="eval.workspace.folder"
    meta_type="Dexterity FTI"
    i18n:domain="eval.workspace" xmlns:i18n="http://xml.zope.org/namespaces/i18n">
 
   <!-- Basic metadata -->
-  <property name="title" i18n:translate="">Workspace</property>
+  <property name="title" i18n:translate="">Folder</property>
   <property name="description"
-    i18n:translate="">Workspaces</property>
-  <property name="icon_expr">string:${portal_url}/++resource++eval.workspace/group-icon.png</property>
-  <property name="factory">eval.workspace.workspace</property>
+    i18n:translate="">Workspace Folder</property>
+  <property name="icon_expr">string:${portal_url}/folder_icon.png</property>
+  <property name="factory">eval.workspace.folder</property>
   <property name="global_allow">False</property>
   <property name="filter_content_types">True</property>  
   <property name="allowed_content_types" purge="False">
-    <!--<element value="eval.workspace.document" />-->
     <element value="eval.workspace.document_file"/>
-    <element value="eval.workspace.folder"/>
   </property>
   <property name="allow_discussion">False</property>
 
   <!-- schema and class used for content items -->
-  <property name="schema">eval.workspace.content.workspace.IWorkspace</property> 
+  <property name="schema">eval.workspace.content.folder.IFolder</property> 
   <property name="klass">plone.dexterity.content.Container</property>
   <property name="behaviors">
      <element value="plone.app.content.interfaces.INameFromTitle" />
