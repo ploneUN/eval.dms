@@ -15,6 +15,35 @@
     if needed.
 </tal:comment>
 
+<metal:javascript_head fill-slot="javascript_head_slot">
+    <script type="text/javascript">
+    $(document).ready(function(){
+        var current_URL = $("span#current").html();
+        var data = $("span#data").html();
+        var data1 = $("span#data1").html();
+        $("#previous").click(function(){
+            data = parseInt(data) -10;
+          window.location = current_URL + '?data=' + data ;
+        });
+
+        $("#next").click(function(){
+            data = parseInt(data) +10;
+          window.location = current_URL + '?data=' + data ;
+        });
+
+         $("#previous1").click(function(){
+            data1 = parseInt(data1) -10;
+          window.location = current_URL + '?data=' + data ;
+        });
+
+        $("#next1").click(function(){
+            data1 = parseInt(data1) +10;
+          window.location = current_URL + '?data=' + data ;
+        });
+      });
+</script>
+</metal:javascript_head>
+
 <metal:main fill-slot="content-core">
   <metal:content-core define-macro="content-core">
 
@@ -35,17 +64,52 @@
             <div tal:content="structure widget/render" />
         </div>
     </fieldset>
+    <form method='post'>
+      <span style="display: none" tal:content="python: view.searchedValue('data')" name='data' id='data'></span>
+    </form>
 
-    <fieldset id="folder-listing">
-        <legend>Contents</legend>
-        <tal:block define="listing_macro context/folder_listing/macros/listing">
-            <metal:use_macro use-macro="listing_macro" />
-        </tal:block>
-    </fieldset>
+    <element tal:define="brains view/contents; data python: int(view.searchedValue('data'))" >
+      <table class="listing">
+        <thead>
+          <th>File</th>
+          <th>Contributor</th>
+          <th>File Type</th>
+          <th class="text-center">Actions</th>
+        </thead>
+      <tbody>
+
+      <tr tal:repeat="brain python: brains[data:data+10]" >
+        <tal:element tal:define="obj brain/getObject">
+          <td><a tal:attributes="href python: brain.getURL()+ '/view'" tal:content="brain/Title"></a></td>
+          <td tal:content="python: brain.Creator.title()"></td>
+          <td tal:content="python: obj.file.contentType"></td>
+          <td style="text-align: center">
+            <a class="tooltips button" tal:attributes="href brain/getURL">
+                <span>Download File</span>
+                <i class="fa fa-download" aria-hidden="true"></i>
+            </a>
+            <a class="tooltips button" tal:condition="python: view.roles(obj)" tal:attributes="href string: ${brain/getURL}/@@token_manage">
+                <span>Share File</span>
+                <i class="fa fa-share" aria-hidden="true"></i>
+            </a>
+          </td>
+        </tal:element>
+      </tr>
+      <tr tal:condition="python: not brains">
+        <td colspan="6"><center>No Data</center></td>
+      </tr>
+    </tbody>
+  </table>
+  <button id="previous" tal:condition="python: data">previous</button>
+  <button id="next" tal:condition="python: len(brains[data:data+11]) > 10">next</button>
+</element>
+
+<span  style="display: none" id="current" tal:content="python: '/'.join(context.getPhysicalPath())"></span>
+
+
 
   </metal:content-core>
 </metal:main>
 
 </body>
 </html>
-
