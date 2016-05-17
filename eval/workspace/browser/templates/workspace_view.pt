@@ -109,7 +109,7 @@
 </element>
     
     
-    <element tal:define="brains python: view.contents('Folder'); fdata python: int(view.searchedValue('fdata'))" >
+    <element tal:define="brains python: view.contents('eval.workspace.folder'); fdata python: int(view.searchedValue('fdata'))" >
       <h3>Folders</h3>
       <table class="listing">
         <thead>
@@ -126,7 +126,7 @@
           <td style="text-align: center">
             <a class="tooltips button" tal:attributes="href python:brain.getURL()+'/delete_confirmation'">
                 <span>Delete</span>
-                <i class="fa fa-times" aria-hidden="true"></i>
+                <i class="fa fa-trash" aria-hidden="true"></i>
             </a>
             
             <!--<a class="tooltips button" tal:condition="python: view.roles(obj)" tal:attributes="href string: ${brain/getURL}/@@token_manage">
