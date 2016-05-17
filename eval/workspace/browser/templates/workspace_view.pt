@@ -20,7 +20,7 @@
     $(document).ready(function(){
         var current_URL = $("span#current").html();
         var data = $("span#data").html();
-        var data1 = $("span#data1").html();
+        var fdata = $("span#fdata").html();
         $("#previous").click(function(){
             data = parseInt(data) -10;
           window.location = current_URL + '?data=' + data ;
@@ -31,14 +31,14 @@
           window.location = current_URL + '?data=' + data ;
         });
 
-         $("#previous1").click(function(){
-            data1 = parseInt(data1) -10;
-          window.location = current_URL + '?data=' + data ;
+         $("#previous_f").click(function(){
+            fdata = parseInt(fdata) -10;
+          window.location = current_URL + '?fdata=' + fdata ;
         });
 
-        $("#next1").click(function(){
-            data1 = parseInt(data1) +10;
-          window.location = current_URL + '?data=' + data ;
+        $("#next_f").click(function(){
+            fdata = parseInt(fdata) +10;
+          window.location = current_URL + '?fdata=' + fdata ;
         });
       });
 </script>
@@ -66,9 +66,11 @@
     </fieldset>
     <form method='post'>
       <span style="display: none" tal:content="python: view.searchedValue('data')" name='data' id='data'></span>
+      <span style="display: none" tal:content="python: view.searchedValue('fdata')" name='fdata' id='fdata'></span>
     </form>
 
-    <element tal:define="brains view/contents; data python: int(view.searchedValue('data'))" >
+    <element tal:define="brains python: view.contents('eval.workspace.document_file'); data python: int(view.searchedValue('data'))" >
+      <h3>Documents</h3>
       <table class="listing">
         <thead>
           <th>File</th>
@@ -104,6 +106,43 @@
   </table>
   <button id="previous" tal:condition="python: data">previous</button>
   <button id="next" tal:condition="python: len(brains[data:data+11]) > 10">next</button>
+</element>
+    
+    
+    <element tal:define="brains python: view.contents('Folder'); fdata python: int(view.searchedValue('fdata'))" >
+      <h3>Folders</h3>
+      <table class="listing">
+        <thead>
+          <th>Title</th>
+          <th>Contributor</th>
+          <th class="text-center">Actions</th>
+        </thead>
+      <tbody>
+
+      <tr tal:repeat="brain python: brains[fdata:fdata+10]" >
+        <tal:element tal:define="obj brain/getObject">
+          <td><a tal:attributes="href python: brain.getURL()+ '/view'" tal:content="brain/Title"></a></td>
+          <td tal:content="python: brain.Creator.title()"></td>
+          <td style="text-align: center">
+            <a class="tooltips button" tal:attributes="href python:brain.getURL()+'/delete_confirmation'">
+                <span>Delete</span>
+                <i class="fa fa-times" aria-hidden="true"></i>
+            </a>
+            
+            <a class="tooltips button" tal:condition="python: view.roles(obj)" tal:attributes="href string: ${brain/getURL}/@@token_manage">
+                <span>Share File</span>
+                <i class="fa fa-share" aria-hidden="true"></i>
+            </a>
+          </td>
+        </tal:element>
+      </tr>
+      <tr tal:condition="python: not brains">
+        <td colspan="6"><center>No Data</center></td>
+      </tr>
+    </tbody>
+  </table>
+  <button id="previous_f" tal:condition="python: fdata">previous</button>
+  <button id="next_f" tal:condition="python: len(brains[fdata:fdata+11]) > 10">next</button>
 </element>
 
 <span  style="display: none" id="current" tal:content="python: '/'.join(context.getPhysicalPath())"></span>
