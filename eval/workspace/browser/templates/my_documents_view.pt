@@ -20,6 +20,7 @@
     $(document).ready(function(){
         var current_URL = $("span#current").html()+'/my_documents_view';
         var data = $("span#data").html();
+        var data1 = $("span#data1").html();
         $("#previous").click(function(){
             data = parseInt(data) -10;
           window.location = current_URL + '?data=' + data ;
@@ -32,12 +33,12 @@
 
          $("#previous1").click(function(){
             data1 = parseInt(data1) -10;
-          window.location = current_URL + '?data=' + data ;
+          window.location = current_URL + '?data1=' + data1 ;
         });
 
         $("#next1").click(function(){
             data1 = parseInt(data1) +10;
-          window.location = current_URL + '?data=' + data ;
+          window.location = current_URL + '?data1=' + data1;
         });
       });
 </script>
@@ -48,10 +49,11 @@
 
     <form method='post'>
       <span style="display: none" tal:content="python: view.searchedValue('data')" name='data' id='data'></span>
+      <span style="display: none" tal:content="python: view.searchedValue('data1')" name='data1' id='data1'></span>
     </form>
 
     <h1>My Documents</h1>
-    <element tal:define="brains view/contents; data python: int(view.searchedValue('data'))" >
+    <element tal:define="brains python:view.contents('eval.workspace.document_file'); data python: int(view.searchedValue('data'))" >
     <table width='100%' class="listing">
         <thead>
           <tr>
@@ -62,7 +64,7 @@
             <th>Download File</th>
           </tr>
         </thead>
-        <tbody tal:define="brains view/contents" tal:condition="brains">
+        <tbody tal:condition="brains">
             <tr tal:repeat="brain python: brains[data:data+10]">
                 <tal:element tal:define="obj brain/getObject">
                   <td><a tal:attributes="href string: ${brain/getURL}/view" tal:content="brain/Title"></a></td>
@@ -85,6 +87,41 @@
     </table>
      <button id="previous" tal:condition="python: data">previous</button>
     <button id="next" tal:condition="python: len(brains[data:data+11]) > 10">next</button>
+    </element>
+    
+    <h1>My Folders</h1>
+    <element tal:define="brains python: view.contents('eval.workspace.folder'); data1 python: int(view.searchedValue('data1'))" >
+    <table width='100%' class="listing">
+        <thead>
+          <tr>
+            <th>Title</th>
+            <th>Contributor</th>
+            <th>Status</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody tal:condition="brains">
+            <tr tal:repeat="brain python: brains[data1:data1+10]">
+                <tal:element tal:define="obj brain/getObject">
+                  <td><a tal:attributes="href string: ${brain/getURL}/view" tal:content="brain/Title"></a></td>
+                  <td tal:content="brain/Creator"></td>
+                  <td tal:content="brain/review_state"></td>
+                  <td style="text-align: center">
+                    <a class="tooltips button" tal:attributes="href python:brain.getURL()+'/delete_confirmation'">
+                      <span>Delete</span>
+                      <i class="fa fa-trash" aria-hidden="true"></i>
+                    </a>
+                    <!--<a class="tooltips button" tal:condition="python: view.roles(obj)" tal:attributes="href string: ${brain/getURL}/@@token_manage">
+                        <span>Share File</span>
+                        <i class="fa fa-share" aria-hidden="true"></i>
+                    </a>-->
+                  </td>
+                </tal:element>
+              </tr>
+        </tbody>
+    </table>
+     <button id="previous1" tal:condition="python: data1">previous</button>
+    <button id="next1" tal:condition="python: len(brains[data1:data1+11]) > 10">next</button>
     </element>
     <br/>
     <a tal:attributes="href string:${context/absolute_url}" tal:content="string: Back to ${context/Title}"></a>
