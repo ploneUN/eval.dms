@@ -18,12 +18,12 @@ class my_documents_view(dexterity.DisplayForm):
     def membership(self):
         return getToolByName(self.context, 'portal_membership')        
     
-    def contents(self):
+    def contents(self, ptype):
         auth_user = self.context.portal_membership.getAuthenticatedMember().getUserName()
         results = []
         brains = self.context.portal_catalog({'path':{'query':'/'.join(self.context.getPhysicalPath()),
                                                       'depth':1},
-                                                'portal_type':'eval.workspace.document_file'})
+                                                'portal_type':ptype})
         for brain in brains:
             if brain.Creator == auth_user:
                 results.append(brain)
@@ -38,7 +38,7 @@ class my_documents_view(dexterity.DisplayForm):
     def searchedValue(self, name=None):
         result = 0
         form = self.request.form
-        if form.has_key('data'):
+        if form.has_key(name):
             result = form[name]
         return result
 
