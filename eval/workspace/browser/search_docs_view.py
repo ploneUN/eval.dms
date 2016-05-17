@@ -26,7 +26,7 @@ class search_docs_view(dexterity.DisplayForm):
         form = self.form
     	path = '/'.join(context.getPhysicalPath())
     	results = []
-    	brains = catalog.searchResults(path={'query': path, 'depth':1},
+    	brains = catalog.searchResults(path={'query': path, 'depth':5},
                                         portal_type=('eval.workspace.document_file'),
                     					sort_on='id', 
                     					sort_order='reverse')
