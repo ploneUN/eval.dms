@@ -1,7 +1,7 @@
 from setuptools import setup, find_packages
 import os
 
-version = '1.0dev1'
+version = '1.0'
 
 setup(name='eval.workspace',
       version=version,
